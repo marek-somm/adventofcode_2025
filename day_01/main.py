@@ -8,9 +8,6 @@ zero_counter = 0
 
 while input.has_more():
 	value = input.get_next()
-	dial.turn(value)
-
-	if dial.is_zero():
-		zero_counter += 1
+	zero_counter += dial.turn_and_count_zeros(value)
 
 print(f"Number of times dial reached zero: {zero_counter}")
