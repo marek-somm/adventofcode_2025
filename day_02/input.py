@@ -20,11 +20,28 @@ class Input:
 
 	def is_valid_id(self, id: int) -> bool:
 		id_string = str(id)
-		if len(id_string) % 2 != 0:
-			return True
 		
+		for divisor in self.get_divisors(id):
+			parts = self.split_id_into_parts(id, divisor)
+			if all(part == parts[0] for part in parts):
+				return False
+		
+
 		half_index = len(id_string) // 2
 		return id_string[:half_index] != id_string[half_index:]
+	
+
+	def get_divisors(self, id: int) -> list:
+		n = len(str(id))
+
+		return [k for k in range(2, n + 1) if n % k == 0]
+	
+
+	def split_id_into_parts(self, id: int, group_count: int) -> list:
+		n = len(str(id))
+		group_size = n // group_count
+		return [str(id)[i:i + group_size] for i in range(0, n, group_size)
+    ]
 	
 
 	def get_ids(self) -> list:
