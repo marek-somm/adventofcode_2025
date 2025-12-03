@@ -28,5 +28,32 @@ class Input:
 		return max1, max2
 	
 
+	def find_maximum_n_batteries(self, battery_bank: str, n: int) -> list[int]:
+		max_joltage = []
+		left_bound = 0
+
+		battery_bank_len = len(battery_bank)
+		for i in range(n):
+			right_bound = battery_bank_len-(n-1-i)
+			max, max_index = self.find_maximum_battery(battery_bank[left_bound:right_bound])
+			max_joltage.append(max)
+			left_bound += max_index + 1
+
+		return max_joltage
+	
+
+	def find_maximum_battery(self, battery_bank: str) -> tuple[int, int]:
+		max_battery = 0
+		max_index = 0
+
+		for index, joltage_string in enumerate(battery_bank):
+			joltage = int(joltage_string)
+			if joltage > max_battery:
+				max_battery = joltage
+				max_index = index
+
+		return max_battery, max_index
+	
+
 	def get_battery_banks(self) -> list[str]:
 		return self.battery_banks
