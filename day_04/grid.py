@@ -19,6 +19,10 @@ class Grid:
 		return count
 	
 
+	def set_value_at(self, x: int, y: int, value: int) -> None:
+		self.grid[y][x] = value
+
+
 	def get_grid(self) -> list[list[int]]:
 		return self.grid
 	
