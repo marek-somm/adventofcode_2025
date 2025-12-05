@@ -4,10 +4,11 @@ from ingredients import Ingredients
 input = Input('day_05/input.txt')
 ingredients = Ingredients(input.id_ranges)
 
-fresh_ingredients = 0
+id_ranges_count = ingredients.get_ranges_count()
 
-for id in input.get_ids():
-	if ingredients.is_fresh(id):
-		fresh_ingredients += 1
+total_fresh_ids = 0
 
-print(f'Number of fresh ingredients: {fresh_ingredients}')
+for id_range_count in id_ranges_count:
+	total_fresh_ids += id_range_count
+
+print(f"Total fresh ingredient IDs: {total_fresh_ids}")
